@@ -3,6 +3,7 @@
 Template.home.onCreated(function () {
   GoogleMaps.ready('map', (map) => {
     var marker;
+
     this.autorun(() => {
       var latLng = Geolocation.latLng();
       if (!latLng) { return; }
