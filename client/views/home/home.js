@@ -22,28 +22,35 @@ Template.home.onCreated(function () {
     });
 
     var busMarkers;
-
-    this.autorun(() => {
-      var buses = Buses.find();
-      busMarkers = buses.map((bus) => {
-        let existingBusMarker = _.findWhere(busMarkers, { '_id': bus._id });
-        if (!existingBusMarker) {
-          console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
-          let busMarker = {
-            marker: new google.maps.Marker({
-              position: new google.maps.LatLng(bus.lat, bus.lng),
-              map: map.instance
-            }),
-            bus: bus,
-            _id: bus._id
-          };
-          return busMarker;
-        } else {
-          existingBusMarker.marker.setPosition({lat: bus.lat, lng: bus.lng});
-          return existingBusMarker;
-        }
-      });
+    var buses = Buses.find();
+    busMarkers = buses.map((bus) => {
+      console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
+      let busMarker = {
+        marker: new google.maps.Marker({
+          position: new google.maps.LatLng(bus.lat, bus.lng),
+          map: map.instance
+        }),
+        bus: bus,
+        _id: bus._id
+      };
+      return busMarker;
     });
+
+    buses.observe({
+      changed (newBus, oldBus) {
+        let existingBusMarker = _.findWhere(busMarkers, {_id: newBus._id});
+        existingBusMarker.marker.setPosition({lat: newBus.lat, lng: newBus.lng});
+      },
+      removed (oldBus) {
+        let existingBusMarker = _.findWhere(busMarkers, {_id: oldBus._id});
+        existingBusMarker.marker.setMap(null);
+      }
+    });
+      // } else {
+      //   existingBusMarker.marker.setPosition({lat: bus.lat, lng: bus.lng});
+      //   existingBusMarker.updated = true;
+      //   return existingBusMarker;
+      // }
   });
 });
 

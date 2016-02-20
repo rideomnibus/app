@@ -43,6 +43,7 @@ kadira:flow-router@2.10.1
 launch-screen@1.0.4
 livedata@1.0.15
 logging@1.0.8
+matb33:collection-hooks@0.8.1
 mdg:geolocation@1.1.0
 mdg:validation-error@0.2.0
 meteor@1.1.10
