@@ -17,20 +17,31 @@ Template.home.onCreated(function () {
           map: map.instance
         });
       } else {
-        console.log('update position: ', latLng);
         marker.setPosition(latLng);
       }
     });
 
+    var busMarkers;
+
     this.autorun(() => {
       var buses = Buses.find();
-      buses.forEach((bus) => {
-        console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
-        let busMarker = new google.maps.Marker({
-          position: new google.maps.LatLng(bus.lat, bus.lng),
-          map: map.instance
-        });
-        busMarker.setPosition({lat: bus.lat, lng: bus.lng});
+      busMarkers = buses.map((bus) => {
+        let existingBusMarker = _.findWhere(busMarkers, { '_id': bus._id });
+        if (!existingBusMarker) {
+          console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
+          let busMarker = {
+            marker: new google.maps.Marker({
+              position: new google.maps.LatLng(bus.lat, bus.lng),
+              map: map.instance
+            }),
+            bus: bus,
+            _id: bus._id
+          };
+          return busMarker;
+        } else {
+          existingBusMarker.marker.setPosition({lat: bus.lat, lng: bus.lng});
+          return existingBusMarker;
+        }
       });
     });
   });
