@@ -1,3 +1,10 @@
 <template name='home'>
   <h1>Ride Cbus</h1>
+  <div class="map-container" style='height:500px; width:500px;'>
+    {{#unless geolocationError}}
+      {{> googleMap name="map" options=mapOptions}}
+    {{else}}
+      Geolocation failed: {{geolocationError}}
+    {{/unless}}
+  </div>
 </template>
