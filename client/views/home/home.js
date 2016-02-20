@@ -1,4 +1,4 @@
-/* global Geolocation, GoogleMaps, google */
+/* global Geolocation, GoogleMaps, google, Buses */
 
 Template.home.onCreated(function () {
   this.autorun(() => { this.subscribe('allBuses'); });
@@ -20,6 +20,18 @@ Template.home.onCreated(function () {
         console.log('update position: ', latLng);
         marker.setPosition(latLng);
       }
+    });
+
+    this.autorun(() => {
+      var buses = Buses.find();
+      buses.forEach((bus) => {
+        console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
+        let busMarker = new google.maps.Marker({
+          position: new google.maps.LatLng(bus.lat, bus.lng),
+          map: map.instance
+        });
+        busMarker.setPosition({lat: bus.lat, lng: bus.lng});
+      });
     });
   });
 });
