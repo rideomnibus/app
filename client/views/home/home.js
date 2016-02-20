@@ -1,6 +1,8 @@
 /* global Geolocation, GoogleMaps, google */
 
 Template.home.onCreated(function () {
+  this.autorun(() => { this.subscribe('allBuses'); });
+
   GoogleMaps.ready('map', (map) => {
     var marker;
 
