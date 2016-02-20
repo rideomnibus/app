@@ -1,12 +1,22 @@
 /* global Geolocation, GoogleMaps, google */
 
 Template.home.onCreated(function () {
-  GoogleMaps.ready('map', function (map) {
-    var latLng = Geolocation.latLng();
+  GoogleMaps.ready('map', (map) => {
+    var marker;
+    this.autorun(() => {
+      var latLng = Geolocation.latLng();
+      if (!latLng) { return; }
 
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(latLng.lat, latLng.lng),
-      map: map.instance
+      if (!marker) {
+        console.log('create marker');
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(latLng.lat, latLng.lng),
+          map: map.instance
+        });
+      } else {
+        console.log('update position: ', latLng);
+        marker.setPosition(latLng);
+      }
     });
   });
 });
