@@ -43,16 +43,30 @@ Template.home.onCreated(function () {
       },
       changed (newBus, oldBus) {
         console.log('changed bus');
+
+        let busList = Buses.find().fetch();
+
+        busList.forEach(function(bus){
+          if (bus.userId === newBus.userId){
+            console.log("found use");
+            // call mapOptionsHelper to center Map
+            mapOptionsHelper();
+          }
+        });
+
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: newBus._id});
         if (existingBusMarker) {
           existingBusMarker.marker.setPosition({lat: newBus.lat, lng: newBus.lng});
         }
+
+
       },
       removed (oldBus) {
         console.log('remove bus');
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: oldBus._id});
         console.log(existingBusMarker);
         if (existingBusMarker) {
+
           existingBusMarker.marker.setMap(null);
         }
       }
@@ -60,19 +74,22 @@ Template.home.onCreated(function () {
   });
 });
 
+ var mapOptionsHelper = function () {
+   var latLng = Geolocation.latLng();
+   // Initialize the map once we have the latLng.
+   if (GoogleMaps.loaded() && latLng) {
+     return {
+        center: new google.maps.LatLng(latLng.lat, latLng.lng),
+       zoom: 15
+     };
+   }
+ }
+
+
 Template.home.helpers({
   geolocationError () {
     var error = Geolocation.error();
     return error && error.message;
   },
-  mapOptions () {
-    var latLng = Geolocation.latLng();
-    // Initialize the map once we have the latLng.
-    if (GoogleMaps.loaded() && latLng) {
-      return {
-        center: new google.maps.LatLng(latLng.lat, latLng.lng),
-        zoom: 15
-      };
-    }
-  }
+  mapOptions: mapOptionsHelper
 });
