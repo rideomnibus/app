@@ -6,6 +6,8 @@ Template.home.onCreated(function () {
   GoogleMaps.ready('map', (map) => {
     var marker;
 
+    console.log('google maps ready');
+
     this.autorun(() => {
       var latLng = Geolocation.latLng();
       if (!latLng) { return; }
@@ -23,19 +25,7 @@ Template.home.onCreated(function () {
 
     var busIcon = 'assets/img/favicon.png';
     var buses = Buses.find();
-    instance.busMarkers = buses.map((bus) => {
-      console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
-      let busMarker = {
-        marker: new google.maps.Marker({
-          position: new google.maps.LatLng(bus.lat, bus.lng),
-          map: map.instance,
-          icon: busIcon
-        }),
-        bus: bus,
-        _id: bus._id
-      };
-      return busMarker;
-    });
+    instance.busMarkers = [];
 
     buses.observe({
       added (newBus) {
@@ -61,6 +51,7 @@ Template.home.onCreated(function () {
       removed (oldBus) {
         console.log('remove bus');
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: oldBus._id});
+        console.log(existingBusMarker);
         if (existingBusMarker) {
           existingBusMarker.marker.setMap(null);
         }
