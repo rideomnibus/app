@@ -1,0 +1,8 @@
+<template name='driver'>
+  {{#if isDriving}}
+    <button id='stop-tracking-driving' class='ui button red'>Stop Tracking Driving</button>
+  {{else}}
+    <button id='start-tracking-driving' class='ui button green'>Start Tracking Drive</button>
+  {{/if}}
+  {{> home}}
+</template>

@@ -1,9 +1,31 @@
 /* global BlazeLayout, FlowRouter */
 
+/* FlowRouter configuration */
+let userAccountsRoutes = [
+  'atSignIn',
+  'atSignUp',
+  'atVerifyEmail',
+  'atSendAgain',
+  'atChangePwd',
+  'atEnrollAccount',
+  'atForgotPwd',
+  'atResetPassword'
+];
+
 /* Routes */
 createFlowRoute('home', { path: '/' });
+createFlowRoute('driver');
+
+FlowRouter.triggers.enter([ requireLoggedIn ], {
+  except: _.union([ 'home' ], userAccountsRoutes)
+});
 
 /* Helpers */
+function requireLoggedIn (context, redirect) {
+  if (!((Meteor.user() !== null) || Meteor.loggingIn())) {
+    return redirect('atSignIn');
+  }
+}
 
 function renderMainLayoutWithContent (content) {
   return () => BlazeLayout.render('layout', content);

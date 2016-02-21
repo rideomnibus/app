@@ -25,3 +25,10 @@ aldeed:simple-schema
 aldeed:collection2
 underscore
 matb33:collection-hooks
+semantic:ui
+flemay:less-autoprefixer
+zimme:active-route
+arillo:flow-router-helpers
+useraccounts:semantic-ui
+useraccounts:flow-routing
+accounts-password
