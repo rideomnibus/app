@@ -13,6 +13,7 @@ Template.driver.events({
   },
   'click #stop-tracking-driving' (event, template) {
     Meteor.call('stopTrackingDriving');
+    Meteor.clearInterval(Template.instance().updateLocationInterval);
   }
 });
 
