@@ -11,15 +11,16 @@ Template.home.onCreated(function () {
     this.autorun(() => {
       var latLng = Geolocation.latLng();
       if (!latLng) { return; }
-
-      if (!marker) {
-        console.log('create marker');
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(latLng.lat, latLng.lng),
-          map: map.instance
-        });
-      } else {
-        marker.setPosition(latLng);
+      if (Meteor.user() === null) {
+        if (!marker) {
+          console.log('create marker');
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latLng.lat, latLng.lng),
+            map: map.instance
+          });
+        } else {
+          marker.setPosition(latLng);
+        }
       }
     });
 
