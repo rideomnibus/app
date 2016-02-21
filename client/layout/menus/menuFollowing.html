@@ -11,9 +11,11 @@
           <div class="item">
             <a class='{{isActiveRoute "atSignIn"}} ui button' href='{{pathFor "atSignIn"}}'>Log In</a>
           </div>
-          <div class="item">
-            <a class='{{isActiveRoute "atSignUp"}} ui primary button' href='{{pathFor "atSignUp"}}'>Sign Up</a>
-          </div>
+          {{#if accountCreationEnabled}}
+            <div class="item">
+              <a class='{{isActiveRoute "atSignUp"}} ui primary button' href='{{pathFor "atSignUp"}}'>Sign Up</a>
+            </div>
+          {{/if}}
         {{/if}}
       </div>
     </div>

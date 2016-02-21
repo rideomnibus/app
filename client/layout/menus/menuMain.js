@@ -13,3 +13,9 @@ Template.menuMain.events({
   }
 
 });
+
+Template.menuMain.helpers({
+  accountCreationEnabled () {
+    return !Meteor.settings.public.forbidClientAccountCreation;
+  }
+});

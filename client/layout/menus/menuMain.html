@@ -10,7 +10,9 @@
           <a class="ui inverted button logout">Log Out</a>
         {{else}}
           <a class='{{isActiveRoute "atSignIn"}} ui inverted button' href='{{pathFor "atSignIn"}}'>Log in</a>
-          <a class='{{isActiveRoute "atSignUp"}} ui inverted button' href='{{pathFor "atSignUp"}}'>Sign Up</a>
+          {{#if accountCreationEnabled}}
+            <a class='{{isActiveRoute "atSignUp"}} ui inverted button' href='{{pathFor "atSignUp"}}'>Sign Up</a>
+          {{/if}}
         {{/if}}
       </div>
     </div>
