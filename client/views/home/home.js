@@ -55,6 +55,7 @@ Template.home.onCreated(function () {
         }
       },
       removed (oldBus) {
+        console.log('remove bus');
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: oldBus._id});
         existingBusMarker.marker.setMap(null);
       }
