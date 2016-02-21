@@ -69,19 +69,22 @@ Template.home.onCreated(function () {
   });
 });
 
+ var mapOptionsHelper = function () {
+   var latLng = Geolocation.latLng();
+   // Initialize the map once we have the latLng.
+   if (GoogleMaps.loaded() && latLng) {
+     return {
+        center: new google.maps.LatLng(latLng.lat, latLng.lng),
+       zoom: 15
+     };
+   }
+ }
+
+
 Template.home.helpers({
   geolocationError () {
     var error = Geolocation.error();
     return error && error.message;
   },
-  mapOptions () {
-    var latLng = Geolocation.latLng();
-    // Initialize the map once we have the latLng.
-    if (GoogleMaps.loaded() && latLng) {
-      return {
-        center: new google.maps.LatLng(latLng.lat, latLng.lng),
-        zoom: 15
-      };
-    }
-  }
+  mapOptions: mapOptionsHelper
 });
