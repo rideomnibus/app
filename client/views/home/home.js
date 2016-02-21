@@ -53,15 +53,29 @@ Template.home.onCreated(function () {
       },
       changed (newBus, oldBus) {
         console.log('changed bus');
+
+        let busList = Buses.find().fetch();
+
+        busList.forEach(function(bus){
+          if (bus.userId === newBus.userId){
+            console.log("found use");
+            // call mapOptionsHelper to center Map
+            mapOptionsHelper();
+          }
+        });
+
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: newBus._id});
         if (existingBusMarker) {
           existingBusMarker.marker.setPosition({lat: newBus.lat, lng: newBus.lng});
         }
+
+
       },
       removed (oldBus) {
         console.log('remove bus');
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: oldBus._id});
         if (existingBusMarker) {
+
           existingBusMarker.marker.setMap(null);
         }
       }
