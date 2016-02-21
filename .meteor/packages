@@ -32,3 +32,5 @@ arillo:flow-router-helpers
 useraccounts:semantic-ui
 useraccounts:flow-routing
 accounts-password
+percolate:synced-cron
+momentjs:moment
