@@ -21,13 +21,15 @@ Template.home.onCreated(function () {
       }
     });
 
+    var busIcon = 'assets/img/favicon.png';
     var buses = Buses.find();
     instance.busMarkers = buses.map((bus) => {
       console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
       let busMarker = {
         marker: new google.maps.Marker({
           position: new google.maps.LatLng(bus.lat, bus.lng),
-          map: map.instance
+          map: map.instance,
+          icon: busIcon
         }),
         bus: bus,
         _id: bus._id
@@ -36,28 +38,32 @@ Template.home.onCreated(function () {
     });
 
     buses.observe({
+      added (newBus) {
+        console.log(`create bus, driving now! ${newBus.name} (${newBus.lat}, ${newBus.lng})`);
+        let busMarker = {
+          marker: new google.maps.Marker({
+            position: new google.maps.LatLng(newBus.lat, newBus.lng),
+            map: map.instance,
+            icon: busIcon
+          }),
+          bus: newBus,
+          _id: newBus._id
+        };
+        instance.busMarkers.push(busMarker);
+      },
       changed (newBus, oldBus) {
         console.log('changed bus');
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: newBus._id});
         if (existingBusMarker) {
           existingBusMarker.marker.setPosition({lat: newBus.lat, lng: newBus.lng});
-        } else {
-          console.log(`create bus, driving now! ${newBus.name} (${newBus.lat}, ${newBus.lng})`);
-          let busMarker = {
-            marker: new google.maps.Marker({
-              position: new google.maps.LatLng(newBus.lat, newBus.lng),
-              map: map.instance
-            }),
-            bus: newBus,
-            _id: newBus._id
-          };
-          instance.busMarkers.push(busMarker);
         }
       },
       removed (oldBus) {
         console.log('remove bus');
         let existingBusMarker = _.findWhere(instance.busMarkers, {_id: oldBus._id});
-        existingBusMarker.marker.setMap(null);
+        if (existingBusMarker) {
+          existingBusMarker.marker.setMap(null);
+        }
       }
     });
   });
