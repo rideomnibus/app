@@ -22,6 +22,7 @@ Template.home.onCreated(function () {
     });
 
     var busMarkers;
+    // var busIcon = "asests/img/schoolBus.png";
     var buses = Buses.find();
     busMarkers = buses.map((bus) => {
       console.log(`create bus! ${bus.name} (${bus.lat}, ${bus.lng})`);
@@ -29,6 +30,7 @@ Template.home.onCreated(function () {
         marker: new google.maps.Marker({
           position: new google.maps.LatLng(bus.lat, bus.lng),
           map: map.instance
+          // icon: busIcon
         }),
         bus: bus,
         _id: bus._id
