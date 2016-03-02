@@ -1,5 +1,11 @@
 <template name='layout'>
-  <div class='ui main container'>
-    {{> Template.dynamic template=content}}
+  {{> header}}
+  <div class='pusher'>
+    <div class="ui inverted vertical center aligned segment header-menu">
+      {{> menuMain}}
+    </div>
+    <div class='ui main container'>
+      {{> Template.dynamic template=content}}
+    </div>
   </div>
 </template>
