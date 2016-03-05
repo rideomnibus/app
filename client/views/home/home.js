@@ -5,7 +5,7 @@ Template.home.onCreated(function () {
   var instance = Template.instance();
   GoogleMaps.ready('map', (map) => {
     var marker;
-
+    var user = 'assets/img/rider_pin.png';
     console.log('google maps ready');
 
     this.autorun(() => {
@@ -16,7 +16,8 @@ Template.home.onCreated(function () {
           console.log('create marker');
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(latLng.lat, latLng.lng),
-            map: map.instance
+            map: map.instance,
+            icon: user
           });
         } else {
           marker.setPosition(latLng);
