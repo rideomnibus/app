@@ -18,7 +18,7 @@ createFlowRoute('driver');
 createFlowRoute('about');
 
 FlowRouter.triggers.enter([ requireLoggedIn ], {
-  except: _.union([ 'home' ], userAccountsRoutes)
+  except: _.union([ 'home' ], userAccountsRoutes, ['about'] )
 });
 
 /* Helpers */
