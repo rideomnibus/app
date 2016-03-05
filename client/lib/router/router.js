@@ -15,6 +15,7 @@ let userAccountsRoutes = [
 /* Routes */
 createFlowRoute('home', { path: '/' });
 createFlowRoute('driver');
+createFlowRoute('about');
 
 FlowRouter.triggers.enter([ requireLoggedIn ], {
   except: _.union([ 'home' ], userAccountsRoutes)

@@ -1,5 +1,6 @@
 <template name='menuSidebar'>
   <div class="ui vertical inverted sidebar menu">
+//TODO: maybe add LOGO as the first option?
     {{> menuLinks}}
     <a class='{{isActiveRoute "atSignIn"}} item' href='{{pathFor "atSignIn"}}'>Log In</a>
     <a class='{{isActiveRoute "atSignUp"}} item' href='{{pathFor "atSignUp"}}'>Sign Up</a>
