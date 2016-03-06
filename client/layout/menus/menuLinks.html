@@ -1,4 +1,5 @@
 <template name='menuLinks'>
+  <a class='{{isActiveRoute "about"}} item' href='{{pathFor "about"}}'>About</a>
   <a class='{{isActiveRoute "home"}} item' href='{{pathFor "home"}}'>Map</a>
   {{#if currentUser}}
     <a class='{{isActiveRoute "driver"}} item' href='{{pathFor "driver"}}'>Driver</a>
