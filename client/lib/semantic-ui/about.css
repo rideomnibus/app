@@ -1,10 +1,7 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
-h1, h2, h3, h4, h5, h6, p {
-  margin-top: 0;
-  margin-bottom: 0;
-}
+
 body {
   font-family: proxima nova, sans-serif;
   font-size: 18px;
@@ -13,26 +10,9 @@ body {
   padding: 0;
   width: 100%;
 }
-.button {
-  border: 2px solid #43a5f8;
-  color: #43a5f8;
-  border-radius: 30px;
-  display: inline-block;
-  padding: 20px 80px;
-  width: auto;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-.button:hover {
-  background-color: #43a5f8;
-  color: #fff;
-}
+
 #center {
   text-align: center;
-}
-.space {
-  margin: 50px 0;
 }
 .full {
   max-width: 100%;
@@ -45,10 +25,6 @@ body {
   max-width: 50%;
   margin: 50px 0;
   display: none;
-}
-.text {
-  margin: 0 20% 30px 20%;
-  text-align: center;
 }
 ul {
   text-align: center;
@@ -68,20 +44,11 @@ li {
     max-width: 70%;
     margin: 50px 0;
   }
-  .button {
-    width: 70%;
-    padding: 20px;
-  }
 }
 @media screen and (max-width: 380px) {
   .social {
-    width: 25%;
-    min-width: 80px;
-  }
-  .button {
-    width: 80%;
-    min-width: 200px;
-    padding: 20px;
+    width: 15%;
+    min-width: 40px;
   }
   ul {
     text-align: center;
