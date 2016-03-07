@@ -1,15 +1,13 @@
 <template name='menuSidebar'>
   <div class="ui vertical inverted sidebar menu">
     {{> menuLinks}}
-    
     {{#if currentUser}}
-        <a class="item">Log Out</a>
+        <a class="item logout">Log Out</a>
     {{else}}
         <a class='{{isActiveRoute "atSignIn"}} item' href='{{pathFor "atSignIn"}}'>Log In</a>
       {{#if accountCreationEnabled}}
         <a class='{{isActiveRoute "atSignUp"}} item' href='{{pathFor "atSignUp"}}'>Sign Up</a>
-      {{/if}} 
+      {{/if}}
     {{/if}}
-
   </div>
 </template>
