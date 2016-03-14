@@ -1,5 +1,11 @@
 ## v.NEXT
 
+## v0.0.3
+
+- animated logo gifs
+- removed overlapping CSS from about.css
+- fix sidebar logout
+
 ## v0.0.2
 
 - custom rider marker
