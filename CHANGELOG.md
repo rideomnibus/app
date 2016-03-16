@@ -1,5 +1,7 @@
 ## v.NEXT
 
+- created tickets schema
+
 ## v0.0.3
 
 - animated logo gifs
