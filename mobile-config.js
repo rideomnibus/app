@@ -13,6 +13,7 @@ App.accessRule('*');
 App.accessRule('*.google.com/*');
 App.accessRule('*.googleapis.com/*');
 App.accessRule('*.gstatic.com/*');
+App.accessRule('*.stripe.com/*');
 
 // Set up resources such as icons and launch screens.
 // App.icons({

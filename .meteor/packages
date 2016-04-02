@@ -34,3 +34,4 @@ useraccounts:flow-routing
 accounts-password
 percolate:synced-cron
 momentjs:moment
+mrgalaxy:stripe
