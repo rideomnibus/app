@@ -19,7 +19,7 @@ createFlowRoute('about');
 createFlowRoute('checkout');
 
 FlowRouter.triggers.enter([ requireLoggedIn ], {
-  except: _.union([ 'home', 'about' ], userAccountsRoutes )
+  except: _.union([ 'home', 'about', 'checkout' ], userAccountsRoutes )
 });
 
 /* Helpers */

@@ -8,8 +8,8 @@ if (Meteor.isClient) {
       StripeCheckout.open({
         key: 'pk_test_y1KtMlXAr5mfOBAIndIJ8fcB',
         amount: total * 100,
-        name: 'Purchase Your Ticket',
-        description: 'COTA Store',
+        name: 'Ticket Purchase',
+        // description: '',
         panelLabel: 'Purchase',
         token: function(res) {
           stripeToken = {
