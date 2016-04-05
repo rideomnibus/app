@@ -2,5 +2,5 @@
 
 Meteor.startup(function () {
   GoogleMaps.load();
-  Stripe.setPublishableKey('pk_test_y1KtMlXAr5mfOBAIndIJ8fcB');
+  Stripe.setPublishableKey(Meteor.settings.public.stripe_pk);
 });
