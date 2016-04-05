@@ -23,7 +23,6 @@ aldeed:simple-schema
 aldeed:collection2
 underscore
 matb33:collection-hooks
-omnibus:mwbscanner
 semantic:ui
 flemay:less-autoprefixer
 zimme:active-route

@@ -17,9 +17,10 @@ createFlowRoute('home', { path: '/' });
 createFlowRoute('driver');
 createFlowRoute('about');
 createFlowRoute('checkout');
+createFlowRoute('scan');
 
 FlowRouter.triggers.enter([ requireLoggedIn ], {
-  except: _.union([ 'home', 'about', 'checkout' ], userAccountsRoutes )
+  except: _.union([ 'home', 'about', 'checkout' ], userAccountsRoutes)
 });
 
 /* Helpers */
