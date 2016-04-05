@@ -64,6 +64,7 @@ modules-runtime@0.6.1
 momentjs:moment@2.12.0
 mongo@1.1.5
 mongo-id@1.0.2
+mrgalaxy:stripe@2.2.2
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.41
 observe-sequence@1.0.9

@@ -32,5 +32,6 @@ useraccounts:flow-routing
 accounts-password
 percolate:synced-cron
 momentjs:moment
+mrgalaxy:stripe
 standard-minifier-css
 standard-minifier-js
