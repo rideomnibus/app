@@ -16,9 +16,10 @@ let userAccountsRoutes = [
 createFlowRoute('home', { path: '/' });
 createFlowRoute('driver');
 createFlowRoute('about');
+createFlowRoute('scan');
 
 FlowRouter.triggers.enter([ requireLoggedIn ], {
-  except: _.union([ 'home' ], userAccountsRoutes, ['about'] )
+  except: _.union([ 'home', 'scan' ], userAccountsRoutes, ['about'] )
 });
 
 /* Helpers */
