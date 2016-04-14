@@ -1,5 +1,6 @@
-/* global GoogleMaps */
+import SlidingMarker from 'marker-animate-unobtrusive';
 
 Meteor.startup(function () {
-  GoogleMaps.load();
+  // GoogleMaps.load();
+  //SlidingMarker.initializeGlobally();
 });
