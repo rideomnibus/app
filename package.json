@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint client lib server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy demo.rideomnibus.com --settings settings.json"
   },
   "repository": {
     "type": "git",
