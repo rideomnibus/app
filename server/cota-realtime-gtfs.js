@@ -1,4 +1,4 @@
-/* global COTA: true, HTTP, Assets */
+/* global COTA: true, HTTP, Assets, Buses */
 
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
 
@@ -16,9 +16,15 @@ COTA = {
         return;
       }
       var feed = GtfsRealtimeBindings.FeedMessage.decode(result.content);
-      console.log(feed);
       feed.entity.forEach(function (entity) {
-        console.log(`Bus: ${entity.id}`, entity.vehicle);
+        let criteria = {
+          name: entity.id
+        };
+        let modifier = { $set: {
+          lat: entity.vehicle.position.latitude,
+          lng: entity.vehicle.position.longitude
+        }};
+        Buses.update(criteria, modifier, { upsert: true });
       });
     });
   }

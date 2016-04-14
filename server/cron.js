@@ -1,8 +1,8 @@
-/* global SyncedCron, moment, Buses */
+/* global SyncedCron, moment, Buses, COTA */
 
 SyncedCron.config({
   // Log job run details to console
-  log: true,
+  log: false,
 
   // Use a custom logger function (defaults to Meteor's logging package)
   logger: null,
@@ -36,8 +36,18 @@ SyncedCron.add({
   job () {
     let nowLess30Seconds = moment().subtract(30, 'seconds').toDate();
     let selector = { updatedAt: { $lt: nowLess30Seconds } };
-    let numberRemoved = Buses.remove(selector);
-    console.log(`${numberRemoved} inactive buses removed`);
+    Buses.remove(selector);
+  }
+});
+
+SyncedCron.add({
+  name: 'Update COTA realtime feed',
+  schedule (parser) {
+    // parser is a later.parse object
+    return parser.text('every 5 seconds');
+  },
+  job () {
+    COTA.getVehiclePositions();
   }
 });
 
