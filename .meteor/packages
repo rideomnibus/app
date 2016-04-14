@@ -34,3 +34,4 @@ percolate:synced-cron
 momentjs:moment
 standard-minifier-css
 standard-minifier-js
+http
