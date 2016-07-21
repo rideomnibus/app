@@ -44,7 +44,8 @@ SyncedCron.add({
   name: 'Update COTA realtime feed',
   schedule (parser) {
     // parser is a later.parse object
-    return parser.text('every 2 seconds');
+    const parserText = Meteor.settings.cotaUpdateParserText || 'every 5 seconds'
+    return parser.text(parserText);
   },
   job () {
     COTA.getVehiclePositions();
